@@ -34,22 +34,36 @@
             </p>
 
             <div class="question-bubble">
-                <p>Hôm nay có phải ngày sinh nhật của một <em>người đặc biệt, xinh đẹp và hoàn hảo tuyệt vời</em> nhất thế giới không?</p>
+                <p><em>Hế lô các ní</em>, các ní biết hôm nay là ngày gì không !!!</p>
             </div>
 
             <div class="welcome-btns" id="btn-group-welcome">
                 <button id="btn-yes" class="btn-primary-amora">
-                    <span>✨ Đúng rồi, chính là mình!</span>
+                    <span>🙏 Đệ tử xin nghe chỉ giáo !!</span>
                 </button>
                 <button id="btn-no" class="btn-ghost-amora">
-                    Không phải mình...
+                    Ủa ai vậy ní ??
                 </button>
             </div>
 
-            <!-- Troll subtitle (shown after a few failed no-clicks) -->
-            <p class="troll-hint" id="troll-hint" style="display:none;">
-                Nút kia đang trốn bạn đó 😂 Thôi bấm nút hồng đi!
-            </p>
+            <!-- Meme popup overlay (Ủa ai vậy ní) -->
+            <div id="meme-overlay" style="display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px);">
+                <img id="meme-img" src="meme.webp" alt="Ủa ai vậy ní" style="max-width:82vw; max-height:82vh; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.7); animation: modal-pop 0.25s ease;">
+            </div>
+
+            <!-- Clue modal (Đệ tử xin nghe chỉ giáo) -->
+            <div id="clue-overlay" style="display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; background:rgba(61,31,41,0.65); backdrop-filter:blur(10px);">
+                <div style="background:rgba(253,246,240,0.97); border:1px solid rgba(212,137,154,0.3); border-radius:28px; padding:44px 36px; max-width:440px; width:90%; text-align:center; box-shadow:0 24px 64px rgba(139,58,82,0.25); animation:modal-pop 0.4s cubic-bezier(0.34,1.56,0.64,1);">
+                    <div style="font-size:2.8rem; margin-bottom:16px;">🔍</div>
+                    <div style="display:inline-block; background:#F7C5D5; color:#8B3A52; font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:5px 16px; border-radius:50px; margin-bottom:18px;">Chỉ Giáo Của Sư Phụ</div>
+                    <p style="font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:600; color:#8B3A52; line-height:1.7; margin-bottom:28px; font-style:italic;">
+                        "Các ní hãy nhìn người ngồi dãy giữa hàng thứ 4 vị trí số 3 từ trái qua đi mấy ní 👀"
+                    </p>
+                    <button id="clue-ok-btn" style="background:linear-gradient(135deg,#D4899A,#8B3A52); color:#fff; border:none; border-radius:50px; padding:14px 36px; font-family:'DM Sans',sans-serif; font-size:1rem; font-weight:600; cursor:pointer; box-shadow:0 6px 20px rgba(139,58,82,0.3); transition:all 0.3s ease;">
+                        Biết rồi! Vào xem thôi 🎉
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -62,9 +76,9 @@
         <!-- ── HERO HEADER ── -->
         <header class="hero-header">
             <div class="hero-inner slide-in-left">
-                <div class="hero-badge">Happy Birthday</div>
-                <h1 class="hero-title">Chúc Mừng<br><em>Sinh Nhật!</em></h1>
-                <p class="hero-sub">Chúc bạn thêm một tuổi và tiếp tục "sống sót" xinh đẹp trên đời này. 🎉</p>
+                <div class="hero-badge">Happy Birthday 🎈 Cường</div>
+                <h1 class="hero-title">Chúc Mừng<br><em>Sinh Nhật Cường!</em></h1>
+                <p class="hero-sub">Chúc Cường thêm một tuổi, ngày càng trưởng thành, sức khỏe dồi dào và... ít mất nết hơn năm ngoái một tí xíu thôi nhé! 🎉</p>
             </div>
 
             <!-- Amora-style Music Player -->

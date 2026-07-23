@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainScreen    = document.getElementById('main-screen');
     const btnYes        = document.getElementById('btn-yes');
     const btnNo         = document.getElementById('btn-no');
-    const trollHint     = document.getElementById('troll-hint');
     const bgMusic       = document.getElementById('bg-music');
     const btnPlayPause  = document.getElementById('btn-play-pause');
     const progressBar   = document.getElementById('progress-bar');
@@ -45,37 +44,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     createPetals();
 
-    // ── TROLL BUTTON "NO" ─────────────────────────────────────
-    let noClickCount = 0;
-    const VIEWPORT_PAD = 70;
+    // ── TROLL BUTTON "ỦA AI VẬY NÍ" ─────────────────────────────────────
+    const memeOverlay = document.getElementById('meme-overlay');
 
-    const runAwayBtn = () => {
-        btnNo.style.position = 'fixed';
-        btnNo.style.zIndex   = '9999';
-        const bw = btnNo.offsetWidth;
-        const bh = btnNo.offsetHeight;
-        const maxX = window.innerWidth  - bw - VIEWPORT_PAD;
-        const maxY = window.innerHeight - bh - VIEWPORT_PAD;
-        btnNo.style.left = Math.max(VIEWPORT_PAD, Math.random() * maxX) + 'px';
-        btnNo.style.top  = Math.max(VIEWPORT_PAD, Math.random() * maxY) + 'px';
-        noClickCount++;
-        if (noClickCount >= 3) trollHint.style.display = 'block';
+    // Flash meme for 1.2s then hide
+    let memeTimer = null;
+    const showMemeFlash = (e) => {
+        if (e) e.preventDefault();
+        if (!memeOverlay) return;
+        memeOverlay.classList.remove('hidden-overlay');
+        if (memeTimer) clearTimeout(memeTimer);
+        memeTimer = setTimeout(() => {
+            memeOverlay.classList.add('hidden-overlay');
+        }, 1200);
     };
 
-    btnNo.addEventListener('mouseover',  runAwayBtn);
-    btnNo.addEventListener('touchstart', e => { e.preventDefault(); runAwayBtn(); });
-    btnNo.addEventListener('click', () => {
-        showModal(`
-            <span class="modal-icon">😏</span>
-            <div class="modal-tag">Nice try</div>
-            <p class="modal-title">Bắt được rồi!</p>
-            <p class="modal-desc">Nút "Không" sinh ra chỉ để làm cảnh thôi bạn ơi! Quay lại và nhấn nút hồng đi nhé!</p>
-        `);
-    });
+    if (btnNo) {
+        btnNo.addEventListener('click', showMemeFlash);
+    }
 
-    // ── YES BUTTON → LAUNCH MAIN SCREEN ──────────────────────
-    btnYes.addEventListener('click', () => {
-        // Amora-themed confetti (pink + rose gold)
+    // ── YES BUTTON → SHOW CLUE MODAL FIRST ───────────────────
+    const clueOverlay = document.getElementById('clue-overlay');
+    const clueOkBtn   = document.getElementById('clue-ok-btn');
+
+    // Function to launch main celebration screen
+    const launchMainScreen = () => {
+        if (clueOverlay) clueOverlay.classList.add('hidden-overlay');
+
         const amoraColors = ['#F7C5D5','#D4899A','#C9A96E','#FFF0F5','#8B3A52'];
         confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: amoraColors });
         setTimeout(() => {
@@ -85,22 +80,28 @@ document.addEventListener('DOMContentLoaded', () => {
             confetti({ particleCount: 60, angle: 125, spread: 60, origin: { x: 1 }, colors: amoraColors });
         }, 500);
 
-        // Transition
         welcomeScreen.classList.remove('active');
         welcomeScreen.classList.add('hidden');
         mainScreen.classList.remove('hidden');
         mainScreen.classList.add('active');
 
-        // Play music
         bgMusic.play().catch(() => {});
         btnPlayPause.textContent = '⏸';
 
-        // Trigger slide-in animations after brief delay (DOM needs to be visible)
         setTimeout(triggerSlideIns, 80);
-
-        // Start balloons
         startBalloons();
-    });
+    };
+
+    if (btnYes) {
+        btnYes.addEventListener('click', () => {
+            if (clueOverlay) clueOverlay.classList.remove('hidden-overlay');
+        });
+    }
+
+    if (clueOkBtn) {
+        clueOkBtn.addEventListener('click', launchMainScreen);
+    }
+
 
     // ── SLIDE-IN OBSERVER ─────────────────────────────────────
     const triggerSlideIns = () => {
@@ -232,10 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="modal-title">Hộp Quà Thật Lòng</p>
                     <p class="modal-desc">Cảm ơn bạn đã kiên nhẫn chịu đựng cả đống trò troll từ nãy đến giờ. Đây mới là món quà thực sự:</p>
                     <div class="modal-letter">
-                        Gửi bạn thân mến,<br><br>
-                        Lại thêm một tuổi mới rồi! Chúc bạn luôn tràn đầy năng lượng, xinh đẹp rạng rỡ, và luôn giữ được nụ cười tươi như hôm nay.<br><br>
-                        Cảm ơn bạn vì những kỷ niệm cùng nhau — những lúc cười té ghế, những lúc nói chuyện mãi không thôi. Tình bạn của chúng ta thật đáng trân trọng.<br><br>
-                        🎀 <strong>Happy Birthday, bạn ơi! Chúc bạn mọi điều tốt đẹp nhất!</strong> 🎀
+                        Gửi Cường thân mến,<br><br>
+                        Lại thêm một tuổi mới rồi! Chúc Cường luôn tràn đầy năng lượng, sức khỏe dồi dào, và luôn giữ được nụ cười tươi như mọi ngày.<br><br>
+                        Cảm ơn vì những kỷ niệm cùng nhau — những lúc cười té ghế, những lúc trò chuyện mãi không thôi. Tình bạn này thật đáng trân trọng.<br><br>
+                        🎀 <strong>Happy Birthday Cường ơi! Chúc cậu mọi điều tốt đẹp nhất!</strong> 🎀
                     </div>
                 `);
             }
@@ -244,15 +245,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── TROLL WISHES ─────────────────────────────────────────
     const wishes = [
-        "Chúc bạn tuổi mới càng ngày càng ít tóc, bù lại tiền nhiều như rác! 💇‍♂️💸",
-        "Chúc bạn mau tìm được bồ để tụi mình còn ăn ké đám cưới. Ế lâu quá rồi đó! 🥺💍",
-        "Tuổi mới chúc bạn ăn hoài không béo — hoặc béo hoài không giảm được! 🎂🍕",
-        "Chúc bạn kiếm thật nhiều tiền để nuôi mình. Yêu thương nhiều! 🥰💵",
-        "Mừng sinh nhật! Bớt điệu đà, bớt đòi quà đi nhé! 🤫🎁",
-        "Chúc bạn thăng tiến vèo vèo, tiền vô như nước sông, tiền ra nhỏ giọt như café phin. ☕",
-        "Chúc bạn luôn giữ vẻ đẹp trai/xinh gái tự phong của mình, không ai tranh nổi đâu! 😂✨",
-        "Chúc bạn tuổi mới bớt cằn nhằn và bớt báo mẹ bạn bè nha! 🚨",
-        "Happy Birthday! Tuổi mới tích đức lấy chồng/vợ nha bạn hiền! 🙏💍"
+        "Chúc Cường tuổi mới càng ngày càng ít tóc, bù lại tiền nhiều như rác! 💇‍♂️💸",
+        "Chúc Cường mau tìm được bồ để tụi mình còn ăn ké đám cưới. Ế lâu quá rồi đó! 🥺💍",
+        "Tuổi mới chúc Cường ăn hoài không béo — hoặc béo hoài không giảm được! 🎂🍕",
+        "Chúc Cường kiếm thật nhiều tiền để nuôi tụi này. Yêu thương nhiều! 🥰💵",
+        "Bật bí nhé Cường ơi, tuổi này cao nhưng độ chín chắn phải hỏi đã! 🤔🎁",
+        "Chúc Cường thăng tiến vèo vèo, tiền vô như nước sông, tiền ra nhỏ giọt như café phin. ☕",
+        "Chúc Cường luôn giữ vẻ đẹp trai tự phong đặc trưng của mình, không ai tranh nổi đâu! 😂✨",
+        "Chúc Cường tuổi mới bớt mất nết và bớt làm khó mấy người bạn nhé! 🙈",
+        "Happy Birthday Cường! Tuổi mới tích đức lấy vợ sớm nhé, tụi mình đợi ăn ké đám cưới lâu rồi! 🙏💍"
     ];
 
     btnWish.addEventListener('click', () => {

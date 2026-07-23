@@ -953,3 +953,95 @@ body {
 
     .btn-primary-amora { max-width: unset; }
 }
+
+/* ── OVERLAYS (MEME & CLUE) ── */
+.full-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.full-overlay.hidden-overlay {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.overlay-meme-img {
+    max-width: 85vw;
+    max-height: 85vh;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    object-fit: contain;
+    animation: modal-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clue-card {
+    background: rgba(253, 246, 240, 0.98);
+    border: 1px solid rgba(212, 137, 154, 0.3);
+    border-radius: 28px;
+    padding: 44px 36px;
+    max-width: 440px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(139, 58, 82, 0.25);
+    animation: modal-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clue-icon {
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+}
+
+.clue-tag {
+    display: inline-block;
+    background: var(--rose);
+    color: var(--deep);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+}
+
+.clue-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--deep);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    font-style: italic;
+}
+
+.clue-ok-btn {
+    background: linear-gradient(135deg, var(--dusty), var(--deep));
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(139, 58, 82, 0.3);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.clue-ok-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(139, 58, 82, 0.4);
+}
+

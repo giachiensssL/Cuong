@@ -45,27 +45,27 @@
                     Ủa ai vậy ní ??
                 </button>
             </div>
-
-            <!-- Meme popup overlay (Ủa ai vậy ní) -->
-            <div id="meme-overlay" style="display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px);">
-                <img id="meme-img" src="meme.webp" alt="Ủa ai vậy ní" style="max-width:82vw; max-height:82vh; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.7); animation: modal-pop 0.25s ease;">
-            </div>
-
-            <!-- Clue modal (Đệ tử xin nghe chỉ giáo) -->
-            <div id="clue-overlay" style="display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; background:rgba(61,31,41,0.65); backdrop-filter:blur(10px);">
-                <div style="background:rgba(253,246,240,0.97); border:1px solid rgba(212,137,154,0.3); border-radius:28px; padding:44px 36px; max-width:440px; width:90%; text-align:center; box-shadow:0 24px 64px rgba(139,58,82,0.25); animation:modal-pop 0.4s cubic-bezier(0.34,1.56,0.64,1);">
-                    <div style="font-size:2.8rem; margin-bottom:16px;">🔍</div>
-                    <div style="display:inline-block; background:#F7C5D5; color:#8B3A52; font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:5px 16px; border-radius:50px; margin-bottom:18px;">Chỉ Giáo Của Sư Phụ</div>
-                    <p style="font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:600; color:#8B3A52; line-height:1.7; margin-bottom:28px; font-style:italic;">
-                        "Các ní hãy nhìn người ngồi dãy giữa hàng thứ 4 vị trí số 3 từ trái qua đi mấy ní 👀"
-                    </p>
-                    <button id="clue-ok-btn" style="background:linear-gradient(135deg,#D4899A,#8B3A52); color:#fff; border:none; border-radius:50px; padding:14px 36px; font-family:'DM Sans',sans-serif; font-size:1rem; font-weight:600; cursor:pointer; box-shadow:0 6px 20px rgba(139,58,82,0.3); transition:all 0.3s ease;">
-                        Biết rồi! Vào xem thôi 🎉
-                    </button>
-                </div>
-            </div>
         </div>
     </section>
+
+    <!-- Meme popup overlay (Ủa ai vậy ní) -->
+    <div id="meme-overlay" class="full-overlay hidden-overlay">
+        <img id="meme-img" src="meme.webp" alt="Ủa ai vậy ní" class="overlay-meme-img">
+    </div>
+
+    <!-- Clue modal (Đệ tử xin nghe chỉ giáo) -->
+    <div id="clue-overlay" class="full-overlay hidden-overlay">
+        <div class="clue-card">
+            <div class="clue-icon">🔍</div>
+            <div class="clue-tag">Chỉ Giáo Của Sư Phụ</div>
+            <p class="clue-text">
+                "Các ní hãy nhìn người ngồi dãy giữa hàng thứ 4 vị trí số 3 từ trái qua đi mấy ní 👀"
+            </p>
+            <button id="clue-ok-btn" class="clue-ok-btn">
+                Biết rồi! Vào xem thôi 🎉
+            </button>
+        </div>
+    </div>
 
     <!-- ===== MAIN CELEBRATION SCREEN ===== -->
     <section id="main-screen" class="screen hidden">

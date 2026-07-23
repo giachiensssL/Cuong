@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday 🎀 — Amora Style</title>
+    <meta name="description" content="Trang web chúc mừng sinh nhật đặc biệt, thiết kế theo phong cách Amora — ngọt ngào, lãng mạn và đầy yêu thương.">
+    <!-- Google Fonts: Playfair + DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Petal particles background (JS generated) -->
+    <div id="petals-bg" class="petals-bg"></div>
+
+    <!-- Audio -->
+    <audio id="bg-music" loop>
+        <source src="KHÚC HÁT MỪNG SINH NHẬT - PHAN ĐINH TÙNG ( OFFICIAL VIDEO) [Wu8NeFXaoOc].mp3" type="audio/mp3">
+    </audio>
+
+    <!-- ===== WELCOME SCREEN ===== -->
+    <section id="welcome-screen" class="screen active">
+        <div class="welcome-card">
+
+            <div class="welcome-bow">🎀</div>
+
+            <h1 class="welcome-heading">Xin chào, bạn ơi!</h1>
+            <p class="welcome-tagline">
+                Trước khi vào, hãy xác nhận một điều quan trọng nhé...
+            </p>
+
+            <div class="question-bubble">
+                <p>Hôm nay có phải ngày sinh nhật của một <em>người đặc biệt, xinh đẹp và hoàn hảo tuyệt vời</em> nhất thế giới không?</p>
+            </div>
+
+            <div class="welcome-btns" id="btn-group-welcome">
+                <button id="btn-yes" class="btn-primary-amora">
+                    <span>✨ Đúng rồi, chính là mình!</span>
+                </button>
+                <button id="btn-no" class="btn-ghost-amora">
+                    Không phải mình...
+                </button>
+            </div>
+
+            <!-- Troll subtitle (shown after a few failed no-clicks) -->
+            <p class="troll-hint" id="troll-hint" style="display:none;">
+                Nút kia đang trốn bạn đó 😂 Thôi bấm nút hồng đi!
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CELEBRATION SCREEN ===== -->
+    <section id="main-screen" class="screen hidden">
+
+        <!-- Balloons -->
+        <div class="balloons-container" id="balloons"></div>
+
+        <!-- ── HERO HEADER ── -->
+        <header class="hero-header">
+            <div class="hero-inner slide-in-left">
+                <div class="hero-badge">Happy Birthday</div>
+                <h1 class="hero-title">Chúc Mừng<br><em>Sinh Nhật!</em></h1>
+                <p class="hero-sub">Chúc bạn thêm một tuổi và tiếp tục "sống sót" xinh đẹp trên đời này. 🎉</p>
+            </div>
+
+            <!-- Amora-style Music Player -->
+            <div class="amora-player slide-in-right">
+                <div class="player-cover">🎵</div>
+                <div class="player-meta">
+                    <div class="player-song">Khúc Hát Mừng Sinh Nhật</div>
+                    <div class="player-artist">Phan Đinh Tùng</div>
+                    <div class="player-bar-wrap" id="progress-container">
+                        <div class="player-bar" id="progress-bar"></div>
+                    </div>
+                    <div class="player-controls-row">
+                        <button id="btn-play-pause" class="play-btn">⏸</button>
+                        <span id="music-time" class="player-time">0:00</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── GALLERY SECTION ── -->
+        <section class="gallery-section">
+            <div class="section-header slide-in-left">
+                <div class="bow-decoration">🎀</div>
+                <h2 class="section-title">Album Ảnh <em>"Người Nổi Tiếng"</em></h2>
+                <p class="section-subtitle">Những khoảnh khắc chứng minh bạn thực sự... rất đặc biệt</p>
+            </div>
+
+            <!-- Filmstrip Row 1: → -->
+            <div class="filmstrip-wrap slide-in-left">
+                <div class="filmstrip-holes holes-top"></div>
+                <div class="filmstrip-scroll">
+                    <div class="filmstrip-track track-fwd">
+                        <div class="film-card"><img src="a1.webp" alt=""><span class="film-caption">Dáng đứng Bến Tre 🌴</span></div>
+                        <div class="film-card"><img src="a2.webp" alt=""><span class="film-caption">Lúc đi hết mình lúc về hết hồn 🥴</span></div>
+                        <div class="film-card"><img src="a3.webp" alt=""><span class="film-caption">Vẻ đẹp tri thức (giả bộ) 📚</span></div>
+                        <div class="film-card"><img src="a4.webp" alt=""><span class="film-caption">Gương mặt thương hiệu 💸</span></div>
+                        <div class="film-card"><img src="a5.webp" alt=""><span class="film-caption">Nụ cười tỏa nắng ☀️</span></div>
+                        <div class="film-card"><img src="a6.webp" alt=""><span class="film-caption">Nghĩ về nhân sinh thế thái 🤔</span></div>
+                        <!-- Duplicate for loop -->
+                        <div class="film-card"><img src="a1.webp" alt=""><span class="film-caption">Dáng đứng Bến Tre 🌴</span></div>
+                        <div class="film-card"><img src="a2.webp" alt=""><span class="film-caption">Lúc đi hết mình lúc về hết hồn 🥴</span></div>
+                        <div class="film-card"><img src="a3.webp" alt=""><span class="film-caption">Vẻ đẹp tri thức (giả bộ) 📚</span></div>
+                        <div class="film-card"><img src="a4.webp" alt=""><span class="film-caption">Gương mặt thương hiệu 💸</span></div>
+                        <div class="film-card"><img src="a5.webp" alt=""><span class="film-caption">Nụ cười tỏa nắng ☀️</span></div>
+                        <div class="film-card"><img src="a6.webp" alt=""><span class="film-caption">Nghĩ về nhân sinh thế thái 🤔</span></div>
+                    </div>
+                </div>
+                <div class="filmstrip-holes holes-bottom"></div>
+            </div>
+
+            <!-- Filmstrip Row 2: ← -->
+            <div class="filmstrip-wrap slide-in-right">
+                <div class="filmstrip-holes holes-top"></div>
+                <div class="filmstrip-scroll">
+                    <div class="filmstrip-track track-rev">
+                        <div class="film-card"><img src="a7.webp" alt=""><span class="film-caption">Nhan sắc gánh còng lưng 💪</span></div>
+                        <div class="film-card"><img src="a8.webp" alt=""><span class="film-caption">Vua lỳ đòn bất bại 🥊</span></div>
+                        <div class="film-card"><img src="a9.webp" alt=""><span class="film-caption">Tổng tài tự luyến 😎</span></div>
+                        <div class="film-card"><img src="a10.webp" alt=""><span class="film-caption">Thời chưa báo gia đình 👶</span></div>
+                        <div class="film-card"><img src="a11.webp" alt=""><span class="film-caption">Nam thần thân ai nấy lo 🤝</span></div>
+                        <div class="film-card"><img src="a12.webp" alt=""><span class="film-caption">Khoảnh khắc thần bí ✨</span></div>
+                        <!-- Duplicate for loop -->
+                        <div class="film-card"><img src="a7.webp" alt=""><span class="film-caption">Nhan sắc gánh còng lưng 💪</span></div>
+                        <div class="film-card"><img src="a8.webp" alt=""><span class="film-caption">Vua lỳ đòn bất bại 🥊</span></div>
+                        <div class="film-card"><img src="a9.webp" alt=""><span class="film-caption">Tổng tài tự luyến 😎</span></div>
+                        <div class="film-card"><img src="a10.webp" alt=""><span class="film-caption">Thời chưa báo gia đình 👶</span></div>
+                        <div class="film-card"><img src="a11.webp" alt=""><span class="film-caption">Nam thần thân ai nấy lo 🤝</span></div>
+                        <div class="film-card"><img src="a12.webp" alt=""><span class="film-caption">Khoảnh khắc thần bí ✨</span></div>
+                    </div>
+                </div>
+                <div class="filmstrip-holes holes-bottom"></div>
+            </div>
+        </section>
+
+        <!-- ── GIFT SECTION ── -->
+        <section class="gift-section">
+            <div class="section-header slide-in-right">
+                <div class="bow-decoration">🎁</div>
+                <h2 class="section-title">Khu Vực <em>Nhận Quà</em></h2>
+                <p class="section-subtitle">Chọn một hộp quà mà bạn ao ước nhất nhé!</p>
+            </div>
+
+            <div class="gift-grid">
+                <div class="gift-item slide-in-left" data-gift="1">
+                    <div class="gift-box">
+                        <div class="gift-top">
+                            <div class="gift-ribbon-h"></div>
+                            <div class="gift-ribbon-v"></div>
+                            <div class="gift-bow">🎀</div>
+                        </div>
+                        <div class="gift-body">
+                            <div class="gift-ribbon-body"></div>
+                        </div>
+                    </div>
+                    <span class="gift-name">Siêu Xe SH 🛵</span>
+                </div>
+
+                <div class="gift-item slide-in-up" data-gift="2">
+                    <div class="gift-box gold">
+                        <div class="gift-top">
+                            <div class="gift-ribbon-h"></div>
+                            <div class="gift-ribbon-v"></div>
+                            <div class="gift-bow">💛</div>
+                        </div>
+                        <div class="gift-body">
+                            <div class="gift-ribbon-body"></div>
+                        </div>
+                    </div>
+                    <span class="gift-name">10 Tỷ Tiền Mặt 💰</span>
+                </div>
+
+                <div class="gift-item slide-in-right" data-gift="3">
+                    <div class="gift-box rose">
+                        <div class="gift-top">
+                            <div class="gift-ribbon-h"></div>
+                            <div class="gift-ribbon-v"></div>
+                            <div class="gift-bow">💕</div>
+                        </div>
+                        <div class="gift-body">
+                            <div class="gift-ribbon-body"></div>
+                        </div>
+                    </div>
+                    <span class="gift-name">Hộp Quà Thật Lòng ❤️</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WISH GENERATOR ── -->
+        <section class="wish-section">
+            <div class="wish-card slide-in-left">
+                <div class="wish-bow">🌸</div>
+                <h3 class="wish-title">Lời Chúc <em>Ngẫu Hứng</em></h3>
+                <div class="wish-display">
+                    <p id="troll-wish">"Nhấn nút bên dưới để nhận một lời chúc cực kỳ... chân thật từ chúng mình!"</p>
+                </div>
+                <div class="wish-btns">
+                    <button id="btn-generate-wish" class="btn-primary-amora">🎲 Lăn xúc xắc lời chúc</button>
+                    <button id="btn-fireworks" class="btn-secondary-amora">🎉 Bắn Pháo Hoa!</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="amora-footer">
+            <span class="bow-deco">🎀</span>
+            <p>Made with love & a little bit of trolling — for you, on your special day.</p>
+            <span class="bow-deco">🎀</span>
+        </footer>
+
+    </section>
+
+    <!-- ===== MODAL ===== -->
+    <div id="troll-modal" class="modal hidden">
+        <div class="modal-backdrop" id="modal-overlay"></div>
+        <div class="modal-box">
+            <button id="modal-close" class="modal-x">×</button>
+            <div id="modal-body-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
